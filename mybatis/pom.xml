@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   
   <modelVersion>4.0.0</modelVersion>
-  <groupId>cn.troob</groupId>
-  <artifactId>user</artifactId>
+  <groupId>example</groupId>
+  <artifactId>mybatis</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>user Maven Webapp</name>
@@ -216,8 +216,7 @@
 		</dependency>
 	</dependencies>
   <build>
-    <finalName>user</finalName>
-
+    <finalName>mybatis</finalName>
   </build>
   
 </project>

@@ -6,7 +6,7 @@
 	</tr>
 	<tr>
 		<td>user-agent</td>
-		<td><%= request.getAttribute("client.browser")%></td>
+		 <td><%= request.getAttribute("client.browser")%></td>
 	</tr>
 </table>
 
