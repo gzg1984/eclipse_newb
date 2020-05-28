@@ -4,8 +4,8 @@
 	<div class="navbar-container" id="navbar-container">
 		<div class="navbar-header pull-left">
 			<!-- #section:basics/navbar.layout.brand -->
-			<a href="<%=request.getContextPath() %>/admin/index.do" class="navbar-brand"> <small> <i
-					class="fa fa-leaf"></i> CHINA_LXR
+			<a href="<%=request.getContextPath() %>/fakepage/index.do" class="navbar-brand"> <small> <i
+					class="fa fa-leaf"></i> CHINA_LXR 管理后台首页
 			</small>
 			</a>
 		</div>
