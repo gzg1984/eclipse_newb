@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<div id="sidebar" class="sidebar responsive gui-nav">
+
+ <!-- <div id="sidebar" class="sidebar responsive gui-nav">  -->
+ <div id="sidebar" class="sidebar gui-nav">
+
 	<ul class="nav nav-list">
 		<c:forEach items="${menu }" var="levelOneMenu">
 			<c:choose>
@@ -88,4 +90,4 @@
 		</c:forEach>
 	</ul>
 	<!-- /.nav-list -->
-</div>
+</div> 
