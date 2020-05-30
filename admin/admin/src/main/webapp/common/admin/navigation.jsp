@@ -4,17 +4,21 @@
 
  <!-- <div id="sidebar" class="sidebar responsive gui-nav">  -->
  <div id="sidebar" class="sidebar gui-nav">
-
 	<ul class="nav nav-list">
+		<li class="active">
+				<!-- 下面的链接实际上是指向全站的相对路径，
+				而不是本工程下的class，所以绕了一圈 
+				同时前面还要手动加上工程名字-->
+				<a href="/admin/user/list.do">
+					<span class="menu-text"> 用户 </span>
+				</a>>
+		</li>
+	
+	
 		<c:forEach items="${menu }" var="levelOneMenu">
-			<c:choose>
-				<c:when test="${levelOneMenu.navName==menuName }">
-					<li class="active">
-				</c:when>
-				<c:otherwise>
-					<li>
-				</c:otherwise>
-			</c:choose>
+			
+			<li class="active">
+				
 			<c:choose>
 				<c:when
 					test="${levelOneMenu.children != null&& fn:length(levelOneMenu.children)>0 }">

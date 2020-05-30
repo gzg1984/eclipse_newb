@@ -10,7 +10,7 @@
 <body class="no-skin">
 	 <%@ include file="/common/admin/nav.jsp"%>
 	<div class="main-container" id="main-container">
-	 	<jsp:include page="/fakepage/getMenu.do" flush="true">
+	 	<jsp:include page="/getMenu.do" flush="true">
 			<jsp:param name="menuName" value="home" />
 		</jsp:include>
 		

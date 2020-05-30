@@ -1,5 +1,7 @@
 package admin.web;
  
+import java.util.List;
+
 import javax.annotation.Resource;
  
 import org.springframework.stereotype.Service;
@@ -18,5 +20,9 @@ public class UserServiceImpl implements IUserService {
 		return this.userDao.selectByPrimaryKey(userId);
 	}
  
+	public List<User> getAllUser(){
+		return this.userDao.getAllUser();
+	}
+
 }
 

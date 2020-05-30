@@ -17,7 +17,7 @@ import admin.domain.Navigation;
 import admin.web.IUserService;
  
 @Controller
-@RequestMapping("/fakepage")
+@RequestMapping("/user")
 public class UserController {
 	@Resource
 	private IUserService userService;
@@ -29,39 +29,18 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "index";
 	}
-	@RequestMapping(value="/index.do",method=RequestMethod.GET)
-	public String toIndex(){
-		return "index";
-	}
-	/**
-	 * 获取管理后台左侧菜单部分
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@Autowired
-	INavigationService navigationServiceImpl;
-	
-	@RequestMapping(value="/getMenu.do")
-	public String getMenu(HttpServletRequest request,HttpServletResponse response){
-		System.out.printf("parameter of getMenu.go is %s\n",request.getParameter("menuName"));
-//		Staff loginStaff=(Staff)request.getSession().getAttribute("loginStaff");  //获取当前登录的员工信息
-//		if(null!=loginStaff){
-//			if(loginStaff.getRoleType().equals(RoleType.ADMIN_ROLE)){
-				List<Navigation> adminMenu=navigationServiceImpl.getNavigationTreeAll();
-				request.setAttribute("menu", adminMenu);
-				System.out.printf("result List size is  %d",adminMenu.size());
 
-//			}
-//			else{
-//				List<Navigation> roleMenu=navigationServiceImpl.getNavigationTreeByRole(Integer.parseInt(loginStaff.getRoleId()));
-//				request.setAttribute("menu", roleMenu);
-//			}
-//			
-//		}
-		request.setAttribute("menuName", request.getParameter("menuName"));
-		//return "forward:/common/admin/navigation.jsp";
-		return "forward:/common/admin/navigation.jsp";
+
+	/* 将list操作转发到 user下的list.jsp页面 */
+	@RequestMapping(value="/list.do")
+	public String toUserList(HttpServletRequest request,HttpServletResponse response,Model model){
+		System.out.printf("Enter list.do with Context %s\n",request.getContextPath());
+		System.out.printf("Enter list.do with parameter %s\n",request.getServletPath());
+		
+		List<User> users = this.userService.getAllUser();
+		model.addAttribute("users", users);
+		return "user/list";
 	}
+	
 }
 
