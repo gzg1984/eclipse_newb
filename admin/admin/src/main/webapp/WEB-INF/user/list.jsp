@@ -34,33 +34,19 @@
 					</h1>
 				</div>
 				<div class="col-sm-12 gui-datagrid">
-					<div id="tb" class="gui-toolbar">
-						<form data-role="filter">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<input type="text" class="easyui-textbox" prompt="关键字查询" style="width:100%" name="keywordFuzzy">
-								</div>
-
-								<div class="col-lg-2 gui-button-group pull-right">
-									<button type="button" data-role="search" class="btn btn-xs btn-primary">搜索</button>
-
-								</div>
-							</div>
-						</form>
-					</div>
 					
-							<c:forEach items="${users }" var="oneUser">
-			<li class="active">
-								<span class="menu-text"> ${oneUser.email } < </span>
-			
-			</li>>
-						</c:forEach>
+							
 				
-					<table class="gui-gridtable" data-statement="user.queryAllUser">
-										
+					<!-- <table class="gui-gridtable" data-statement="user.queryAllUser">-->
+					<table>	
 						<thead>
 					        <tr>
-					          <gui:th checkbox="true" type="com.genesisdo.chinalxr.user.pojo.UserVO"/>
+					          <!--  <gui:th checkbox="true" type="com.genesisdo.chinalxr.user.pojo.UserVO"/> -->
+					         <th>ID</th>
+					          					         <th>用户名</th>
+					          					         <th>昵称</th>
+					          
+					          <th>email</th>
 					          <th data-options="field:'_mute',formatter:function(value,row){
 					          if(row.isMute=='0'){ return $.gui_datagrid_formatter(row.userId,'禁言','btn btn-xs btn-yellow','toMute');}
 					          else{ return $.gui_datagrid_formatter(row.userId,'解禁','btn btn-xs btn-primary','toMute');}}
@@ -73,6 +59,24 @@
 					          </th>
 					        </tr>
 					    </thead>
+					    
+					      <tbody>
+					          <c:forEach items="${users }" var="oneUser">
+					          <tr>
+					          <td>${oneUser.userId }</td>
+					          
+					          <td>${oneUser.username }</td>
+					          <td>${oneUser.nickname }</td>
+					          
+					          <td>${oneUser.email }</td>
+					          </tr>
+					          </c:forEach>
+					          </tbody>
+					      <tfoot>
+						    <tr>
+						      <td>======EndOfAll========</td>
+						    </tr>
+						  </tfoot>
 					</table>
 				
 				</div>
