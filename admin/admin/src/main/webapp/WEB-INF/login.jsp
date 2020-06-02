@@ -31,7 +31,7 @@
 												请输入登录信息
 											</h4>
 											<div class="space-6"></div>
-											<form action="<%=request.getContextPath() %>/admin/login.do" method="post">
+											<form action="<%=request.getContextPath() %>/login.do" method="post">
 											<input type="hidden" value="${url }" name="url">
 												<fieldset>
 													<label class="block clearfix">

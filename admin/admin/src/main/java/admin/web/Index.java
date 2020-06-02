@@ -11,19 +11,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import admin.domain.Navigation;
 import admin.domain.User;
+import admin.domain.Admin;
+
 import admin.web.IUserService;
- 
+import admin.web.INavigationService;
+import admin.web.INavigationService;
+
 @Controller
 @RequestMapping("/")
 public class Index {
 	/* 将默认首页访问转发到WEB-INF/index.jsp */
-    @RequestMapping(value = {"/","", "/index", "/index.html" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/index", "/index.html" }, method = RequestMethod.GET)
     public String toIndex(HttpServletRequest request) {
-		System.out.printf("Enter admin.web with Context %s\n",request.getContextPath());
-		System.out.printf("Enter admin.web with parameter %s\n",request.getServletPath());
+		System.out.printf("Enter index of admin.web with Context %s\n",request.getContextPath());
+		System.out.printf("Enter index of  admin.web with parameter %s\n",request.getServletPath());
 
         return "index";
     }
@@ -62,7 +67,48 @@ public class Index {
 		request.setAttribute("menuName", request.getParameter("menuName"));
 		return "forward:/common/admin/navigation.jsp";
 	}
-    
+	@RequestMapping(value="/login.do",method= RequestMethod.GET)
+	public String toLogin(HttpServletRequest request,HttpServletResponse response){
+		request.setAttribute("url", request.getParameter("url"));
+		return "login";
+	}
+	/* 将默认首页访问转发到WEB-INF/index.jsp */
+    @RequestMapping(value = {"/","","/login","login.html" }, method = RequestMethod.GET)
+    public String toLogin(HttpServletRequest request) {
+		System.out.printf("Enter login of admin.web with Context %s\n",request.getContextPath());
+		System.out.printf("Enter login of admin.web with parameter %s\n",request.getServletPath());
+
+        return "login";
+    }
+	@RequestMapping(value="/logout.do",method= RequestMethod.GET)
+	public String toLogout(HttpServletRequest request,HttpServletResponse response){
+		request.getSession().setAttribute("loginAdmin", null);
+		return "redirect:login.do";
+	}
+	
+	@Autowired
+	IAdminService adminServiceImpl;
+	
+	
+	@RequestMapping(value="/login.do",method= RequestMethod.POST)
+	public String doLogin(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("username")String username,@RequestParam("password")String password){
+		Admin loginAdmin=adminServiceImpl.getAdminLogin(username, password);
+		
+		if(null!=loginAdmin){
+			request.getSession().setAttribute("loginAdmin", loginAdmin);
+			if(null!=request.getParameter("url")&&!request.getParameter("url").equals("")){
+				return "redirect:"+request.getParameter("url");
+			}
+			else{
+				return "redirect:/index.do";
+			}
+		}
+		else{
+			request.setAttribute("errMsg", "账号或密码错误");
+			return "login";
+		}
+	}
     
 }
 

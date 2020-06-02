@@ -15,10 +15,8 @@
 		</jsp:include>
 		
 		<div class="main-content">
-			第二层div
 		
 			<div class="breadcrumbs" id="breadcrumbs">
-						第三层div
 			
 				<ul class="breadcrumb">
 				<!-- 下面的链接实际上是指向全站的相对路径，而不是本工程下的class，所以绕了一圈 -->
