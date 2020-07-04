@@ -21,5 +21,6 @@ public interface AdminMapper {
     
     List<Admin> getAdminVOList(@Param("username")String username,@Param("password")String md5_password);
 
+    List<Admin> getAllAdmin();
 
 }

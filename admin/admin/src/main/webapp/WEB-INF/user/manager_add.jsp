@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +13,7 @@
 <body class="no-skin">
 	<%@ include file="/common/admin/nav.jsp"%>
 	<div class="main-container" id="main-container">
-		<jsp:include page="/admin/getMenu.do" flush="true">
+		<jsp:include page="/getMenu.do" flush="true">
 			<jsp:param name="menuName" value="project-upload" />
 		</jsp:include>
 		<div class="main-content">

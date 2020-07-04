@@ -51,6 +51,9 @@ public class AdminServiceImpl implements IAdminService {
 		}
 		return null;
 	}
+	public List<Admin> getAllAdmin() {
+		return this.adminMapper.getAllAdmin();
+	}
 
 	/*
 	@Override

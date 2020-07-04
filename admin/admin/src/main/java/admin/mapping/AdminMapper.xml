@@ -17,6 +17,14 @@
     from tb_admin
     where admin_id = #{adminId,jdbcType=INTEGER}
   </select>
+  
+    <select id="getAllAdmin"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_admin
+  </select>
+  
+  
   <select id="getAdminVOList"  resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

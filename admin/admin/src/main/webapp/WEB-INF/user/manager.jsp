@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="gui" uri="http://framework.genesisdo.com/gui"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,7 @@
 <body class="no-skin">
 	<%@ include file="/common/admin/nav.jsp"%>
 	<div class="main-container" id="main-container">
-		<jsp:include page="/admin/getMenu.do" flush="true">
+		<jsp:include page="/getMenu.do" flush="true">
 			<jsp:param name="menuName" value="user-manager" />
 		</jsp:include>
 		<div class="main-content">
@@ -35,13 +37,9 @@
 						<form data-role="filter">
 							<div class="row">
 								<div class="col-lg-2 col-md-2">
-<!-- 									<input type="text" class="easyui-textbox" prompt="关键字查询" style="width:100%" name="keywordFuzzy"> -->
 								</div>
-<!-- 								<div class="col-lg-2 col-md-2"> -->
-<!-- 									<input type="text" class="easyui-textbox" prompt="权威来源" style="width:100%" name="sourceFromFuzzy"> -->
-<!-- 								</div> -->
+
 								<div class="col-lg-2 gui-button-group pull-right">
-<!-- 									<button type="button" data-role="search" class="btn btn-xs btn-primary">搜索</button> -->
 									<c:if test="${sessionScope.loginAdmin.isSuper=='1' }">
 									<a href="/admin/user/addManager.do" class="btn btn-xs btn-success">新增</a>
 									<button type="button"  data-role="edit"  class="btn btn-xs btn-default">重置密码</button>
@@ -50,19 +48,44 @@
 							</div>
 						</form>
 					</div>
-					<table class="gui-gridtable" data-statement="admin.queryAllAdmin">
+					<table>
 						<thead>
 					        <tr>
-					          <gui:th checkbox="true" type="com.genesisdo.chinalxr.admin.pojo.AdminVO"/>
-<!-- 					          <th data-options="field:'_detail',formatter:function(value,row){return $.gui_datagrid_formatter(row.titleEn,'详情','btn btn-xs btn-default','toDetail');}"></th> -->
-					        </tr>
+					          <th>Admin ID</th>
+					          <th>Admin username</th>
+					         <th>Fake Password</th>
+					           </tr>
 					    </thead>
+					    
+					     <tbody>
+					     
+
+					     
+					     
+					     
+					          <c:forEach items="${adminUsers }" var="oneUser">
+					          <tr>
+					          <td>${oneUser.adminId }</td>
+					          <td>${oneUser.username }</td>
+						      <td>SaveInBrain</td>
+					          </tr>
+					          </c:forEach>
+					          
+
+
+					          </tbody>
+					      <tfoot>
+						    <tr>
+						      <td>======End Of All admin Users========</td>
+						    </tr>
+						  </tfoot>
 					</table>
 				
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 
 	<%@ include file="/common/admin/script.jsp"%>
 	<script type="text/javascript">
 	$('.gui-datagrid').gui_datagrid({
@@ -100,7 +123,7 @@
 				}
 			}
 		}
-	});
-	</script>
+	}); 
+	</script>-->
 </body>
 </html>

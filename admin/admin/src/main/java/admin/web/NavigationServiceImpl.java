@@ -75,10 +75,11 @@ public class NavigationServiceImpl implements INavigationService{
 		return resultList;
 	}*/
 	
+	
+	/* Refer select * from navigation; */
 	private void Tree(Navigation resultNav,List<Navigation> navList) {
 		for(int i=0;i<navList.size();i++){
 			Navigation navigation=navList.get(i);
-			System.out.printf("navigation name is %s\n",navigation.getTitle());
 
 			if(navigation.getParentId()==resultNav.getNavigationId()){
 				if(resultNav.getChildren()==null){

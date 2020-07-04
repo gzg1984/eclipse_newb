@@ -1,5 +1,7 @@
 package admin.web;
 
+import java.util.List;
+
 import admin.domain.Admin;;
 
 public interface IAdminService {
@@ -14,4 +16,6 @@ public interface IAdminService {
 	 * @return
 	 */
 	//boolean checkAdminUsernameUnique(String username);
+	public List<Admin>  getAllAdmin();
+
 }
