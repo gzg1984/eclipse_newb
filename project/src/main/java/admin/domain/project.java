@@ -26,7 +26,9 @@ public class project {
     public Integer getProjectId() {
         return projectId;
     }
-
+    public String getProjectIdString() {
+        return Integer.toString(projectId) ;
+    }
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }

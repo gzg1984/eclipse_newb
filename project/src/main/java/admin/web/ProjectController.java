@@ -36,6 +36,11 @@ import org.apache.log4j.Logger;
 import java.util.UUID;
 import java.util.LinkedList;
 import java.sql.SQLException;
+/* for add project, file manager*/
+import admin.domain.file;
+import util.EncodingDetect;
+import org.apache.commons.io.FileUtils;
+//import com.genesisdo.chinalxr.lucene.analyzer.SourceFileAnalyzer;
 
 /*搜索引擎 */
 import org.apache.lucene.analysis.Analyzer;
@@ -94,17 +99,18 @@ public class ProjectController {
 			projectPo.setIndexPath( projectPo.getTitleEn());
 			projectPo.setIsShow("1");
 			projectPo.setStatus("UNZIPPING");
-			this.projectServiceImpl.addProjectBase(projectPo);
+			//this.projectServiceImpl.addProjectBase(projectPo);
 			UnzipWorker unzipWorker = new UnzipWorker(uploadResult.getAbsoluteFilePath(),
-					absolutePrefix + File.separator+projectRootPath, true, projectPo.getProjectId());
+					absolutePrefix + File.separator+projectRootPath, true, projectPo.getProjectIdString());
 
 			unzipWorker.setPriority(1);
 			unzipWorker.start();
 			IndexingWorker indexingWorker = new IndexingWorker(
 					absolutePrefix + File.separator+ projectRootPath + File.separator + projectPo.getTitleEn(),
-					absolutePrefix + File.separator+indexRootPath+ File.separator+ projectPo.getIndexPath(), unzipWorker, projectPo.getProjectId());
+					absolutePrefix + File.separator+indexRootPath+ File.separator+ projectPo.getIndexPath(), unzipWorker, 
+					projectPo.getProjectIdString());
 			indexingWorker.start();
-			result.put("success", true);
+			//result.put("success", true);
 		}
 	}
 	
@@ -170,10 +176,10 @@ public class ProjectController {
     	 */
 
 	public class PersistentWorker extends Thread {
-		private List<ProjectFilePO> fileList;
+		private List<file> fileList;
 		private String name;
 
-		public PersistentWorker(String name, List<ProjectFilePO> fileList) {
+		public PersistentWorker(String name, List<file> fileList) {
 
 			super(name);
 			this.name = name;
@@ -182,13 +188,14 @@ public class ProjectController {
 
 		public void run() {
 			long start = System.currentTimeMillis();
-			for (ProjectFilePO po : fileList) {
+			for (file po : fileList) {
+				/*
 				try {
-					projectServiceImpl.addProjectFile(po);
+					//projectServiceImpl.addProjectFile(po);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 			}
 			System.out.println("线程 " + name + "耗时:" + (System.currentTimeMillis() - start) + "ms");
 		}
@@ -237,7 +244,7 @@ public class ProjectController {
 				
 				// 索引完毕,状态变为已完成
 				long startTime = System.currentTimeMillis();
-				List<ProjectFilePO> poList = new ArrayList<ProjectFilePO>();
+				List<file> poList = new ArrayList<file>();
 				LinkedList<File> fileList = this.getAllFileRecuision(srcPath, projectId, "", poList);
 				long endTile = System.currentTimeMillis();
 				logger.debug("递归耗时:" + (endTile - startTime) + "ms");
@@ -257,7 +264,7 @@ public class ProjectController {
 				int thredCount = poList.size() % pageSize == 0 ? (poList.size() / pageSize)
 						: (poList.size() / pageSize + 1);
 				for (int i = 1; i <= thredCount; i++) {
-					List<ProjectFilePO> splitedList = new ArrayList<ProjectFilePO>();
+					List<file> splitedList = new ArrayList<file>();
 					if (i != thredCount) {
 						splitedList.addAll(poList.subList((i - 1) * pageSize, i * pageSize));
 
@@ -267,10 +274,10 @@ public class ProjectController {
 					PersistentWorker persistentWorker = new PersistentWorker("pThread " + i, splitedList);
 					persistentWorker.start();
 				}
-				indexDirectory=FSDirectory.open(FileSystems.getDefault().getPath(destPath));
-				Analyzer analyzer = new SourceFileAnalyzer();
-				IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
-				indexWriter = new IndexWriter(indexDirectory, indexWriterConfig);
+				//indexDirectory=FSDirectory.open(FileSystems.getDefault().getPath(destPath));
+				//Analyzer analyzer = new SourceFileAnalyzer();
+				//IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
+				//indexWriter = new IndexWriter(indexDirectory, indexWriterConfig);
 				indexWriter.deleteAll();// 清除以前的index
 				if(null!=fileList){
 					for (File file : fileList) {
@@ -336,7 +343,7 @@ public class ProjectController {
 		//ProjectFilePO 是文件的表的导出结构
 		
 		private LinkedList<File> getAllFileRecuision(String path, String projectId, String parentFileId,
-				List<ProjectFilePO> poList) {
+				List<file> poList) {
 			LinkedList<File> list = new LinkedList<File>();
 			File file = new File(path);
 			if (file.exists()) {
