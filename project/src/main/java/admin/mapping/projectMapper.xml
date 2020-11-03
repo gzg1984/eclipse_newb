@@ -202,4 +202,35 @@
       status = #{status,jdbcType=CHAR}
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>
+  
+  <insert id="addProjectBase" parameterType="admin.domain.projectWithBLOBs"  keyProperty="projectId">
+         INSERT INTO `tb_project_base` (
+             `title`,
+             `title_en`,
+             `desc`,
+             `source_from`,
+             `download_count`,
+             `visit_count`,
+             `is_show`,
+             `add_time`,
+             `index_path`,
+             `zip_url`,
+             status
+         )
+         VALUES
+             (
+                 #{title},
+                 #{titleEn},
+                 #{desc},
+                 #{sourceFrom},
+                 0,
+                 0,
+                 #{isShow},
+                 now(),
+                 #{indexPath},
+                 #{zipUrl},
+                 #{status}
+             );
+     </insert>
+  
 </mapper>

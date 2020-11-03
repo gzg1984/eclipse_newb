@@ -35,27 +35,17 @@
 				</div>
 				<div class="col-sm-12 gui-datagrid">
 					
-							
-				
-					<!-- <table class="gui-gridtable" data-statement="user.queryAllUser">-->
-					<table>	
+												<table>	
 						<thead>
 					        <tr>
-					          <!--  <gui:th checkbox="true" type="com.genesisdo.chinalxr.user.pojo.UserVO"/> -->
 					         <th>ID</th>
 					          <th>工程名字</th>
 					          <th>访问次数</th>
-					          
-					          <th data-options="field:'_mute',formatter:function(value,row){
-					          if(row.isMute=='0'){ return $.gui_datagrid_formatter(row.userId,'禁言','btn btn-xs btn-yellow','toMute');}
-					          else{ return $.gui_datagrid_formatter(row.userId,'解禁','btn btn-xs btn-primary','toMute');}}
-					          ">
-					          </th>
-					         <th data-options="field:'_login',formatter:function(value,row){
-					          if(row.isLock=='0'){ return $.gui_datagrid_formatter(row.userId,'禁用','btn btn-xs btn-danger','toFroze');}
-					          else{ return $.gui_datagrid_formatter(row.userId,'正常','btn btn-xs btn-success','toFroze');}}
-					          ">
-					          </th>
+					          <th>索引路径</th>
+					          <th>压缩文件</th>
+					          <th>英文名</th>
+					     
+
 					        </tr>
 					    </thead>
 					    
@@ -66,6 +56,13 @@
 					          
 					          <td>${oneUser.title }</td>
 					          <td>${oneUser.visitCount }</td>
+					          <td>${oneUser.indexPath }</td>
+					          <td>${oneUser.zipUrl }</td>
+					          <td>${oneUser.titleEn }</td>
+					          
+					        
+    
+    
 					          
 					          </tr>
 					          </c:forEach>

@@ -10,7 +10,8 @@ import admin.IDao.projectMapper;
 import admin.domain.project;
 import admin.domain.projectWithBLOBs;
 import admin.web.projectService;
- 
+import java.sql.SQLException;
+
 @Service("projectService")
 public class projectServiceImpl implements projectService {
 	@Resource
@@ -21,5 +22,19 @@ public class projectServiceImpl implements projectService {
 			return this.pDao.getAllprojects();
 	}
 
+	/*2020 11 03 add  project */
+    public void addProjectBase(projectWithBLOBs projectBasePO) throws SQLException {
+    	this.pDao.addProjectBase(projectBasePO);
+    }
+
+    public void updateProjectBaseStatus(String projectId, String status) throws SQLException {
+    	projectWithBLOBs po=new projectWithBLOBs();
+        po.setStatus(status);
+        //po.setProjectId(projectId);
+       // projectMapper.updateProjectBase(po);
+
+    }
+
+    
 }
 

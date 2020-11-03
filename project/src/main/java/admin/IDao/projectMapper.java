@@ -21,4 +21,8 @@ public interface projectMapper {
     int updateByPrimaryKeyWithBLOBs(projectWithBLOBs record);
 
     int updateByPrimaryKey(project record);
+    
+    /* new for upload */
+    void addProjectBase(projectWithBLOBs po);
+
 }
