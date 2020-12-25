@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
  
 import test.IDao.UserMapper;
 import test.domain.User;
-import test.java.IUserService;
+//import test.java.IUserService;
  
 @Service("userService")
 public class UserServiceImpl implements IUserService {
@@ -14,7 +14,6 @@ public class UserServiceImpl implements IUserService {
 	private UserMapper userDao;
 
 	public User getUserById(int userId) {
-		// TODO Auto-generated method stub
 		return this.userDao.selectByPrimaryKey(userId);
 	}
  
