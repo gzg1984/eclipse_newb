@@ -1,6 +1,7 @@
 package admin.web;
  
 import java.io.File;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,8 @@ import java.sql.SQLException;
 import admin.domain.file;
 import util.EncodingDetect;
 import org.apache.commons.io.FileUtils;
-//import com.genesisdo.chinalxr.lucene.analyzer.SourceFileAnalyzer;
+
+
 
 /*搜索引擎 */
 import org.apache.lucene.analysis.Analyzer;
@@ -51,6 +53,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+
 
 
 @Controller
@@ -274,7 +277,7 @@ public class ProjectController {
 					PersistentWorker persistentWorker = new PersistentWorker("pThread " + i, splitedList);
 					persistentWorker.start();
 				}
-				//indexDirectory=FSDirectory.open(FileSystems.getDefault().getPath(destPath));
+				indexDirectory=FSDirectory.open(FileSystems.getDefault().getPath(destPath));
 				//Analyzer analyzer = new SourceFileAnalyzer();
 				//IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
 				//indexWriter = new IndexWriter(indexDirectory, indexWriterConfig);
