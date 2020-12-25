@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
  
 import test.domain.User;
-import test.java.IUserService;
+//import test.java.IUserService;
  
 @Controller
 @RequestMapping("/user")

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class SnoopServlet extends HttpServlet {
+	static final long serialVersionUID = 1;
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String userAgent =  req.getHeader("user-agent");
