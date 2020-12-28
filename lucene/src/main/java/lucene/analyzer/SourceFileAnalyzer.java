@@ -1,4 +1,4 @@
-package com.genesisdo.chinalxr.lucene.analyzer;
+package lucene.analyzer;
 
 import java.util.Set;
 
@@ -9,9 +9,9 @@ import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.core.StopFilter;
 import org.apache.lucene.analysis.miscellaneous.LengthFilter;
 
-import com.genesisdo.chinalxr.lucene.NumericFilter;
-import com.genesisdo.chinalxr.lucene.ProgramLanguageSyntaxFilter;
-import com.genesisdo.chinalxr.lucene.tokenizer.SourceFileTokenizer;
+import lucene.NumericFilter;
+import lucene.ProgramLanguageSyntaxFilter;
+import lucene.tokenizer.SourceFileTokenizer;
 
 public class SourceFileAnalyzer extends Analyzer {
 

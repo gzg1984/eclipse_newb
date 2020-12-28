@@ -1,4 +1,4 @@
-package com.genesisdo.chinalxr.lucene;
+package lucene;
 
 import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.FilteringTokenFilter;

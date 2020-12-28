@@ -4,6 +4,7 @@ import admin.domain.project;
 import admin.domain.projectWithBLOBs;
 
 import java.util.List;
+import admin.domain.file;
 
 public interface projectMapper {
     int deleteByPrimaryKey(Integer projectId);
@@ -24,5 +25,6 @@ public interface projectMapper {
     
     /* new for upload */
     void addProjectBase(projectWithBLOBs po);
+    void addProjectFile(file filePo);
 
 }

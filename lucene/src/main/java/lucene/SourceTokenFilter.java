@@ -1,4 +1,4 @@
-package com.genesisdo.chinalxr.lucene;
+package lucene;
 
 import java.io.IOException;
 

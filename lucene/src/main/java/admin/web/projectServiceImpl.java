@@ -11,6 +11,7 @@ import admin.domain.project;
 import admin.domain.projectWithBLOBs;
 import admin.web.projectService;
 import java.sql.SQLException;
+import admin.domain.file;
 
 @Service("projectService")
 public class projectServiceImpl implements projectService {
@@ -35,6 +36,9 @@ public class projectServiceImpl implements projectService {
 
     }
 
-    
+    public void addProjectFile(file filePO) throws SQLException {
+        this.pDao.addProjectFile(filePO);
+    }
+
 }
 

@@ -1,4 +1,4 @@
-package com.genesisdo.chinalxr.lucene.tokenizer;
+package lucene.tokenizer;
 
 import java.io.IOException;
 

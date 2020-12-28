@@ -232,5 +232,28 @@
                  #{status}
              );
      </insert>
+       <insert id="addProjectFile" parameterType="admin.domain.file" keyProperty="fileId">
+         INSERT INTO `tb_project_file` (
+             uuid,
+             `parent_uuid`,
+             `file_path`,
+             `file_type`,
+             `file_size`,
+             `project_id`,
+             `file_name`,
+             visit_count
+         )
+         VALUES
+             (
+                 #{uuid},
+                 #{parentUuid},
+                 #{filePath},
+                 #{fileType},
+                 #{fileSize},
+                 #{projectId},
+                 #{fileName},
+                 0
+             );
+     </insert>
   
 </mapper>

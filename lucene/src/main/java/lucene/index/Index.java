@@ -1,4 +1,4 @@
-package com.genesisdo.chinalxr.lucene.index;
+package lucene.index;
 
 import java.io.File;
 import java.util.LinkedList;
